@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>my to-do list web app</title>
+        
+        <style>
+            body{
+                background-color:lavender;
+                min-height:100dvh;
+                display:flex;
+                flex-direction:column 
+            }
+            nav{
+                background-color:orange;
+                height:clamp(150px,25dvh,250px);
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                font-size:6vw
+            }
+            .myinput{
+                align-self:center;
+                margin-top:5dvh;
+            }
+            input{
+                width:clamp(350px,60vw,550px);
+                height:clamp(60px,10dvh,80px);
+                border-radius:15px;
+                font-size:6vw
+            }
+            .mytasks{
+                align-self:center;
+                background-color:white;
+                width:clamp(450px,90vw,1000px);
+                margin-top:10dvh;
+                font-size:8vw
+            }
+            button{
+              height:clamp(60px,10vw,80px);
+              border-radius:15px;
+              background-color:lightgreen;
+              font-size:6vw
+            }
+            a{
+                background-color:red;
+                padding:0.5rem;
+                border-radius:0.5rem;
+                margin-bottom:3dvh
+            }
+            .list{
+                margin-bottom:3dvh
+            }
+            .middle{
+                display:flex;
+                align-items:center
+            }
+            hr{
+                margin-bottom:3dvh
+            }
+            a{
+                margin-left:15vw
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+           <div>
+               <h2>TO-DO LIST WEB APP</h2>
+           </div> 
+        </nav>
+      
+        <div class='myinput'>
+            <form action="/add" method="POST">
+                <input type="text" name="input_name" placeholder="Enter new task">
+                <button class="btn btn-success">Add task</button>
+            </form>
+        </div>
+        <div class="mytasks">
+            <ul>
+                
+            {% for task in tasks_container %}
+            <div class="middle">
+                <li class="list">
+                    {{ task }} <a href="/delete/{{loop.index0}}">delete</a>
+                </li>
+                </div>
+                <hr>
+            
+            {% endfor%}
+            </ul>
+        </div>
+    </body>
+</html>
